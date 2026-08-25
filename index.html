@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rainniel Villela | Portfolio</title>
+
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (error) {
+        console.warn("Theme preference could not be loaded.");
+      }
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css?v=29" />
+
+    <style>
+      /* Keep the profile name visually identical in Creative and Tech Mode. */
+      html.dark .intro-text .profile-heading-row h1 {
+        font-family: "Inter", Arial, sans-serif;
+        font-size: clamp(25px, 3vw, 34px);
+        font-weight: 750;
+        line-height: 1.05;
+        letter-spacing: -0.045em;
+      }
+
+      /* White outline that follows the transparent profile silhouette,
+         instead of drawing a rectangular border around the image box. */
+      html.dark .profile-bw {
+        filter:
+          drop-shadow(1px 0 0 rgba(255, 255, 255, 0.95))
+          drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.95))
+          drop-shadow(0 1px 0 rgba(255, 255, 255, 0.95))
+          drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.95));
+      }
+
+      /* ================================================================
+         HOME TECH PROJECTS — THREE EQUAL CARDS
+         ================================================================ */
+      html.dark .tech-work-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      html.dark .tech-work-grid .tech-project {
+        min-height: 300px;
+        height: 100%;
+        grid-row: auto;
+      }
+
+      html.dark .tech-work-grid .tech-project h3 {
+        font-size: clamp(24px, 2.6vw, 34px);
+        line-height: 1.05;
+      }
+
+      @media (max-width: 850px) {
+        html.dark .tech-work-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        html.dark .tech-work-grid .tech-project {
+          min-height: 240px;
+        }
+      }
+
+      /* ================================================================
+         HOME TECH SKILLS
+         Two closer groups: Technologies + Tools.
+         ================================================================ */
+      html.dark .home-tech-skill-layout {
+        width: min(100%, 760px);
+        margin: 0 auto;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1.25fr) minmax(270px, 0.75fr);
+        gap: 34px;
+        align-items: start;
+      }
+
+      .home-tech-skill-layout .skill-clean-column {
+        min-width: 0;
+      }
+
+      .home-tech-skill-layout .skill-clean-column h3 {
+        margin: 0 0 18px;
+        color: var(--soft);
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: 1.8px;
+        text-align: left;
+        text-transform: uppercase;
+      }
+
+      .home-tech-technologies {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .home-tech-technologies span {
+        min-height: 44px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 11px;
+        line-height: 1.45;
+        text-align: center;
+        transition:
+          color 0.25s ease,
+          border-color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .home-tech-technologies span:hover {
+        border-color: var(--text);
+        transform: translateY(-2px);
+      }
+
+      .home-tech-tool-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 20px;
+      }
+
+      .home-tech-tool-list > div {
+        min-width: 0;
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 9px;
+        color: var(--muted);
+      }
+
+      .home-tech-tool-list img {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 22px;
+        display: block;
+        object-fit: contain;
+        filter: grayscale(1) brightness(1.45);
+        opacity: 0.78;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          filter 0.2s ease;
+      }
+
+      .home-tech-tool-list span {
+        min-width: 0;
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.25;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      .home-tech-tool-list > div:hover img {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+
+      .home-tech-tool-list > div:hover span {
+        color: var(--text);
+      }
+
+      @media (max-width: 850px) {
+        html.dark .home-tech-skill-layout {
+          width: min(100%, 620px);
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .home-tech-technologies,
+        .home-tech-tool-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="top-status"
+      role="group"
+      aria-label="Philippine time and availability"
+    >
+      <span id="phTime">--:--:-- PM PHT</span>
+      <span class="availability"><i aria-hidden="true"></i>Available</span>
+      <button
+        id="breakToggle"
+        class="break-toggle"
+        type="button"
+        aria-label="Open RYNL BREAK Easter egg"
+        aria-expanded="false"
+        aria-controls="rynlBreakHint"
+      >
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <section
+      id="portfolioPass"
+      class="portfolio-pass"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="portfolioPassTitle"
+      aria-hidden="true"
+      inert
+    >
+      <div class="pass-deck">
+        <article class="pass-card pass-card-back" aria-hidden="true">
+          <span class="pass-back-brand">rynl.</span>
+          <span class="pass-back-rule"></span>
+          <p>CREATIVE + TECHNOLOGY</p>
+          <small>CONTACT · PORTFOLIO · RÉSUMÉ</small>
+          <span class="pass-back-year">2026 · PH</span>
+        </article>
+
+        <article class="pass-card pass-card-front">
+          <header class="pass-card-header">
+            <strong>rynl.</strong>
+            <span>PORTFOLIO PASS · 2026</span>
+          </header>
+
+          <!--
+            This visible card content is populated from CONTACT_DETAILS and
+            CONTACT_EMAIL in script.js so you only need to edit it there.
+          -->
+          <div class="pass-identity">
+            <h2 id="portfolioPassTitle">Rainniel Villela</h2>
+            <p id="passTitle">Creative + Technology</p>
+            <p id="passLocation">Sariaya, Quezon · PH</p>
+            <span class="pass-available"
+              ><i aria-hidden="true"></i>AVAILABLE</span
+            >
+          </div>
+
+          <a
+            id="passQrLink"
+            class="pass-qr-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open portfolio link in a new tab"
+          >
+            <span id="passQr" class="pass-qr" aria-hidden="true"></span>
+            <span id="passQrFallback" class="pass-qr-fallback"
+              >Generating QR…</span
+            >
+          </a>
+
+          <p class="pass-scan-label">SCAN TO OPEN ON MOBILE</p>
+          <a id="passEmail" class="pass-email" href="#">Email</a>
+
+          <div class="pass-actions">
+            <button id="saveContactBtn" class="pass-action" type="button">
+              SAVE CONTACT ↓
+            </button>
+            <a
+              id="passResumeLink"
+              class="pass-action"
+              href="file/rainniel-villela-graphics-resume.pdf"
+              aria-label="Download current resume"
+              >VIEW RÉSUMÉ ↗</a
+            >
+            <a
+              id="passOpenLink"
+              class="pass-action pass-open-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              >OPEN LINK ↗</a
+            >
+          </div>
+
+          <div class="pass-nfc">
+            <button id="nfcWriteBtn" type="button" hidden>
+              WRITE TEST LINK TO NFC TAG
+            </button>
+            <p id="nfcStatus" class="nfc-status" aria-live="polite"></p>
+            <p id="nfcFallback" class="nfc-fallback">
+              Use the QR code or a compatible Android device
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <nav
+      class="bottom-panel"
+      id="bottomPanel"
+      aria-label="Portfolio navigation"
+    >
+      <a
+        href="index.html#about"
+        class="bottom-nav-item nav-link"
+        data-nav="about"
+        aria-label="About Me"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/circle.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">About Me</span>
+      </a>
+
+      <a
+        href="work.html"
+        class="bottom-nav-item nav-link"
+        data-nav="work"
+        aria-label="Work"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/square.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Work</span>
+      </a>
+
+      <a
+        href="skill.html"
+        class="bottom-nav-item nav-link"
+        data-nav="skill"
+        aria-label="Skill"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/triangle.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Skill</span>
+      </a>
+
+      <button
+        id="quoteBtn"
+        class="bottom-nav-item bottom-nav-action icon-btn dock-utility-start"
+        type="button"
+        aria-label="Show quote"
+        aria-expanded="false"
+        aria-controls="quoteBox"
+      >
+        <img
+          class="dock-png bottom-nav-image"
+          src="image/icon/ux.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Quote</span>
+      </button>
+
+      <a
+        id="resumeDownload"
+        href="file/rainniel-villela-graphics-resume.pdf"
+        class="bottom-nav-item"
+        aria-label="Download current resume"
+      >
+        <img class="dock-png" src="image/icon/arrow.png" alt="" aria-hidden="true" />
+        <span class="bottom-nav-label">Resume</span>
+      </a>
+
+      <button
+        id="themeBtn"
+        class="bottom-nav-item bottom-nav-action icon-btn"
+        type="button"
+        aria-label="Turn on dark mode"
+        aria-pressed="false"
+      >
+        <img
+          id="themeIcon"
+          class="dock-png dock-mode-image"
+          src="image/icon/hexagon.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label" id="themeLabel">Tech Mode</span>
+      </button>
+    </nav>
+
+    <div
+      id="quoteBox"
+      class="quote-box"
+      role="dialog"
+      aria-label="Quote of the day"
+      aria-live="polite"
+    >
+      <span>Quote of the Day</span>
+      <p id="quoteText">Finding today's quote...</p>
+    </div>
+
+    <main>
+      <section class="hero" id="about">
+        <div class="profile-square">
+          <img
+            src="image/PROFILE/profilec.png"
+            alt="Rainniel Villela color profile"
+            class="profile-img profile-color"
+          />
+          <img
+            src="image/PROFILE/profile.png"
+            alt="Rainniel Villela black and white profile"
+            class="profile-img profile-bw"
+          />
+        </div>
+
+        <div class="intro-text">
+          <div class="profile-heading-row">
+            <h1>
+              Rainniel Villela
+              <img
+                class="verified-badge"
+                src="image/icon/verified.png"
+                alt="Verified"
+              />
+            </h1>
+          </div>
+
+          <p class="intro-line creative-only">
+          A blank canvas doesn’t ask for perfection. It asks for imagination.
+          I like exploring new ideas, trying things I haven’t done before, 
+          and turning curiosity into something worth creating.
+          </p>
+
+          <p class="intro-line tech-only">
+            Ideas have no form until someone dares to build them.
+            I turn the unseen into something people can see, use, and remember.
+          </p>
+
+          <!-- Creative Mode keeps the existing typewriter handled by script.js. -->
+          <p class="typewriter-text creative-only">
+            <span id="typedRole">Graphic Designer</span
+            ><span class="cursor">|</span>
+          </p>
+
+          <!-- Tech Mode has its own independent typewriter roles. -->
+          <p class="typewriter-text tech-only">
+            <span id="typedTechRole">BSIT Graduate</span
+            ><span class="cursor">|</span>
+          </p>
+
+          <div class="socials">
+            <a
+              href="https://www.facebook.com/rainniel.villela"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a
+              href="https://www.instagram.com/rainniel89"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+              href="https://github.com/rainniel2"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="mailto:rainnielvillela1@gmail.com" aria-label="Gmail">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section
+        class="resume-section"
+        id="education"
+        aria-labelledby="educationTitle"
+      >
+        <div class="resume-heading">
+          <p id="educationTitle">Education</p>
+        </div>
+
+        <div class="resume-list">
+          <article class="resume-entry">
+            <span class="resume-period">2022 — 2026</span>
+
+            <div class="resume-entry-content">
+              <h2>Bachelor of Science in Information Technology</h2>
+
+              <a
+                class="resume-link"
+                href="https://cstc.edu.ph/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                College of Sciences, Technology and Communications
+
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <small>CSTC Sariaya Main Campus</small>
+            </div>
+          </article>
+
+          <article class="resume-entry">
+            <span class="resume-period">2020 — 2022</span>
+
+            <div class="resume-entry-content">
+              <h2>Senior High School</h2>
+
+              <a
+                class="resume-link"
+                href="https://stfrancissariaya.wela.ph/sfhs-main"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                St. Francis High School
+
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <small> ABM — Accountancy, Business and Management </small>
+            </div>
+          </article>
+
+          <article class="resume-entry">
+            <span class="resume-period">2016 — 2020</span>
+
+            <div class="resume-entry-content">
+              <h2>Junior High School</h2>
+
+              <a
+                class="resume-link"
+                href="https://www.facebook.com/stfrancis.sariaya"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                St. Francis High School
+
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE — CREATIVE MODE ONLY -->
+      <section
+        class="resume-section creative-only"
+        id="experience"
+        aria-labelledby="experienceTitle"
+      >
+        <div class="resume-heading">
+          <p id="experienceTitle">Experience</p>
+        </div>
+
+        <div class="resume-list">
+          <article class="resume-entry">
+            <span class="resume-period">FEB — JUNE 2026</span>
+
+            <div class="resume-entry-content">
+              <h2>Marketing Intern</h2>
+
+              <a
+                class="resume-link"
+                href="https://toyotalucena.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Toyota Lucena City, Inc.
+
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <small>
+                Social media graphics, promotional posters, photo editing, and
+                video content.
+              </small>
+            </div>
+          </article>
+
+          <article class="resume-entry">
+            <span class="resume-period">2025 — 2026</span>
+
+            <div class="resume-entry-content">
+              <h2>Director</h2>
+
+              <a
+                class="resume-link"
+                href="https://www.facebook.com/SYNTAXorg/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Creatives and Publicity · SYNTAX Organization
+
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <small>
+                Led the creative direction and publicity materials of the
+                organization.
+              </small>
+            </div>
+          </article>
+
+          <article class="resume-entry">
+            <span class="resume-period">2024 — 2025</span>
+
+            <div class="resume-entry-content">
+              <h2>Creatives</h2>
+
+              <a
+                class="resume-link"
+                href="https://www.facebook.com/SYNTAXorg/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Graphics and Design · SYNTAX Organization
+
+                <i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i>
+              </a>
+
+              <small>
+                Created organization visuals, event materials, and social media
+                content.
+              </small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="work-preview" id="work">
+        <div class="section-heading">
+          <p class="creative-only">Project Archive</p>
+          <p class="tech-only">Project Archive</p>
+
+          <a href="work.html" class="section-link creative-only">
+            View All <span>↗</span>
+          </a>
+
+          <a href="work.html" class="section-link tech-only">
+            View All <span>↗</span>
+          </a>
+        </div>
+
+        <div class="work-five-grid creative-only">
+          <div class="work-five featured-five">
+            <img
+              src="image/work/toyota/corolla.webp"
+              alt="Toyota Corolla graphic design"
+            />
+          </div>
+
+          <div class="work-five">
+            <img
+              src="image/work/syntax/bsit-profile-frame.webp"
+              alt="Syntax frame design"
+            />
+          </div>
+
+          <div class="work-five">
+            <img
+              src="image/work/syntax/elevate-team-frame-purple.webp"
+              alt="Syntax team design"
+            />
+          </div>
+
+          <div class="work-five">
+            <img
+              src="image/work/toyota/tamaraw-search.webp"
+              alt="Toyota Tamaraw graphic design"
+            />
+          </div>
+
+          <div class="work-five">
+            <img
+              src="image/work/toyota/labor-day.webp"
+              alt="Toyota Labor Day poster design"
+            />
+          </div>
+        </div>
+
+        <div class="tech-work-grid tech-only">
+          <article class="tech-project">
+            <span>Capstone IoT</span>
+            <h3>iCapsicum</h3>
+
+            <p>
+              An Android and IoT-based monitoring and automated drip fertigation
+              system designed for Kalahari bell pepper production at Quezon
+              National Agricultural School.
+            </p>
+
+            <div>
+              <small>ESP32</small>
+              <small>Firebase</small>
+              <small>Android</small>
+            </div>
+          </article>
+
+          <article class="tech-project">
+            <span>Front-End Tool</span>
+            <h3>Vyrify</h3>
+
+            <p>
+              A simple scam checker concept for links, text, screenshots, and
+              safety reminders.
+            </p>
+
+            <div>
+              <small>HTML</small>
+              <small>CSS</small>
+              <small>JS</small>
+            </div>
+          </article>
+
+          <article class="tech-project">
+            <span>Arduino IoT</span>
+            <h3>Automatic Pet Feeder</h3>
+
+            <p>
+              An Arduino-based automatic pet feeder that uses a sensor and
+              time-based scheduling to dispense food automatically.
+            </p>
+
+            <div>
+              <small>Arduino</small>
+              <small>Sensor</small>
+              <small>Scheduling</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="skill-preview" id="skill">
+        <div class="skill-top">
+          <p class="creative-only">Skill</p>
+          <p class="tech-only">Tech Skill</p>
+
+          <a href="skill.html" class="section-link">
+            All Skills <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <!-- CREATIVE MODE SKILLS -->
+        <div class="creative-skill-layout creative-only">
+          <section class="creative-skill-block creative-skills-block">
+            <h3>Creative Skills</h3>
+
+            <div class="creative-skill-list">
+              <span>Graphic Design</span>
+              <span>UI &amp; Web Layout Design</span>
+              <span>Video Editing</span>
+              <span>Social Media Page Management</span>
+              <span>Poster Design</span>
+              <span>Photo Editing</span>
+            </div>
+          </section>
+
+          <section class="creative-skill-block creative-tools-block">
+            <h3>Tools</h3>
+
+            <div class="creative-tool-list">
+              <div>
+                <img src="image/skill/tools/photoshop.png" alt="Photoshop" />
+                <span>Photoshop</span>
+              </div>
+
+              <div>
+                <img src="image/skill/tools/canva.png" alt="Canva" />
+                <span>Canva</span>
+              </div>
+
+              <div>
+                <img src="image/skill/tools/figma.png" alt="Figma" />
+                <span>Figma</span>
+              </div>
+
+              <div>
+                <img src="image/skill/tools/krita.png" alt="Krita" />
+                <span>Krita</span>
+              </div>
+
+              <div>
+                <img src="image/skill/tools/lightroom.png" alt="Lightroom" />
+                <span>Lightroom</span>
+              </div>
+
+              <div>
+                <img
+                  src="image/skill/tools/affinity-designer.png"
+                  alt="Affinity Designer"
+                />
+                <span>Affinity</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- TECH MODE SKILLS -->
+        <div class="home-tech-skill-layout tech-only">
+          <section class="skill-clean-column" aria-labelledby="technologiesTitle">
+            <h3 id="technologiesTitle">Technologies</h3>
+
+            <div class="home-tech-technologies">
+              <span>HTML</span>
+              <span>ESP32</span>
+              <span>Arduino</span>
+              <span>Firebase</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </section>
+
+          <section class="skill-clean-column" aria-labelledby="techToolsTitle">
+            <h3 id="techToolsTitle">Tools</h3>
+
+            <div class="home-tech-tool-list">
+              <div>
+                <img src="image/skill/TOOLS/arduino.png" alt="" aria-hidden="true" />
+                <span>Arduino IDE</span>
+              </div>
+
+              <div>
+                <img src="image/skill/TOOLS/visual.png" alt="" aria-hidden="true" />
+                <span>VSCode</span>
+              </div>
+
+              <div>
+                <img src="image/skill/TOOLS/firebase.png" alt="" aria-hidden="true" />
+                <span>Firebase</span>
+              </div>
+
+              <div>
+                <img src="image/skill/TOOLS/gemini.png" alt="" aria-hidden="true" />
+                <span>Gemini</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+      
+      <footer class="contact-footer" id="contact">
+      
+
+        <div class="footer-contact">
+          <a href="mailto:rainnielvillela1@gmail.com">
+            <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+            <span>rainnielvillela1@gmail.com</span>
+          </a>
+          <a href="tel:+639127589382">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <span>+63&nbsp;912&nbsp;758&nbsp;9382</span>
+          </a>
+
+            <a href="https://www.google.com/maps/search/Quezon,+Philippines+4322">
+                <i class="fa-regular fa-map" aria-hidden="true"></i>
+                <span>Quezon, 4322 Philippines</span>
+         
+        </div>
+
+      </footer>
+
+
+    </main>
+
+    <script src="qrcode.js?v=1"></script>
+    <script src="script.js?v=19"></script>
+    <script src="rynl-break.js?v=4"></script>
+
+    <script>
+      /* ================================================================
+         TECH MODE TYPEWRITER
+         Creative Mode continues to use #typedRole from script.js.
+         ================================================================ */
+      (function () {
+        "use strict";
+
+        const typedTechRole = document.getElementById("typedTechRole");
+
+        if (!typedTechRole) return;
+
+        const techRoles = [
+          "BSIT Graduate",
+          "Front-End Developer",
+          "IoT Developer",
+        ];
+
+        let roleIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+        let timer = null;
+
+        function schedule(delay) {
+          window.clearTimeout(timer);
+          timer = window.setTimeout(typeTechRole, delay);
+        }
+
+        function typeTechRole() {
+          const currentRole = techRoles[roleIndex];
+
+          if (!deleting) {
+            charIndex += 1;
+            typedTechRole.textContent = currentRole.slice(0, charIndex);
+
+            if (charIndex >= currentRole.length) {
+              deleting = true;
+              schedule(1300);
+              return;
+            }
+
+            schedule(75);
+            return;
+          }
+
+          charIndex -= 1;
+          typedTechRole.textContent = currentRole.slice(0, charIndex);
+
+          if (charIndex <= 0) {
+            deleting = false;
+            roleIndex = (roleIndex + 1) % techRoles.length;
+            schedule(280);
+            return;
+          }
+
+          schedule(40);
+        }
+
+        function resetTechTypewriter() {
+          window.clearTimeout(timer);
+          roleIndex = 0;
+          charIndex = 0;
+          deleting = false;
+          typedTechRole.textContent = "";
+          schedule(250);
+        }
+
+        /* Reset when Creative / Tech Mode changes. */
+        const themeObserver = new MutationObserver(function () {
+          if (document.documentElement.classList.contains("dark")) {
+            resetTechTypewriter();
+          }
+        });
+
+        themeObserver.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"],
+        });
+
+        resetTechTypewriter();
+      })();
+    </script>
+  </body>
+</html>
