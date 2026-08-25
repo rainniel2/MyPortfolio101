@@ -21,7 +21,8 @@ const pageName = (function () {
 
   return (rawName.replace(/\.html$/i, "") || "index").toLowerCase();
 })();
-const isHomePage = pageName === "index";
+const isHomePage =
+  pageName === "index" || pageName === "tech" || pageName === "graphics";
 
 if (contactFooter) {
   const footerObserver = new IntersectionObserver(
