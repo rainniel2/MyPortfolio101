@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Creative and development work by Rainniel Villela."
+    />
+    <title>Work | Rainniel Villela</title>
+
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (error) {
+        console.warn("Theme preference could not be loaded.");
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css?v=30" />
+    <link rel="stylesheet" href="work-gallery.css?v=3" />
+
+    <style>
+      /* ================================================================
+         TECH WORK — LOCKED / COMING SOON
+         ================================================================ */
+
+      html.dark .tech-work-section .more-work-title {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+      }
+
+      .tech-project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .tech-project-card {
+        min-width: 0;
+        min-height: 290px;
+        padding: 24px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        color: var(--text);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        cursor: default;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease,
+          background 0.35s ease;
+      }
+
+      html.dark .tech-project-card {
+        background: #151515;
+      }
+
+      .tech-project-card:hover {
+        transform: translateY(-2px);
+        border-color: color-mix(in srgb, var(--text) 38%, var(--border));
+      }
+
+      /* Vyrify is prepared for a future deployed URL.
+         It only becomes clickable after data-project-url contains a real link. */
+      .project-link-ready[data-project-url]:not([data-project-url=""]) {
+        cursor: pointer;
+      }
+
+      .project-link-ready[data-project-url]:not([data-project-url=""]):hover {
+        border-color: #ffffff;
+      }
+
+      .project-link-ready[data-project-url=""] {
+        cursor: default;
+      }
+
+      /* Vyrify external-link indicator */
+      .vyrify-link-arrow {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 5;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        background: transparent;
+        border: 0;
+        font-size: 14px;
+        line-height: 1;
+        transition:
+          transform 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .project-link-ready:hover .vyrify-link-arrow {
+        color: var(--text);
+        transform: translate(2px, -2px);
+      }
+
+      html.dark .vyrify-link-arrow {
+        color: #bdbdbd;
+      }
+
+      html.dark .project-link-ready:hover .vyrify-link-arrow {
+        color: #ffffff;
+      }
+
+      .project-link-ready[data-project-url]:not([data-project-url=""]) {
+        cursor: pointer;
+      }
+
+      .tech-project-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .tech-project-card .project-type {
+        display: block;
+        margin-bottom: 18px;
+        padding-right: 54px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .tech-project-card h2 {
+        margin: 0 0 14px;
+        color: var(--text);
+        font-size: clamp(23px, 2.7vw, 32px);
+        line-height: 1.05;
+        letter-spacing: -0.045em;
+      }
+
+      .tech-project-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .project-tags {
+        margin-top: 30px;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .project-tags span {
+        padding: 6px 9px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .project-lock-badge {
+        padding: 7px 9px;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 4;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        background: color-mix(in srgb, var(--card) 84%, transparent);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+
+      html.dark .project-lock-badge {
+        color: #d8d8d8;
+        background: rgba(24, 24, 24, 0.88);
+        border-color: #3c3c3c;
+      }
+
+      .project-coming-soon {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+        opacity: 0;
+        background: rgba(10, 10, 10, 0.72);
+        backdrop-filter: blur(5px);
+        transition: opacity 0.22s ease;
+      }
+
+      .project-coming-soon div {
+        display: grid;
+        justify-items: center;
+        gap: 9px;
+        color: #ffffff;
+        transform: translateY(8px);
+        transition: transform 0.22s ease;
+      }
+
+      .project-coming-soon i {
+        font-size: 18px;
+      }
+
+      .project-coming-soon strong {
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.7px;
+      }
+
+      .project-coming-soon small {
+        color: rgba(255, 255, 255, 0.62);
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 8px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+
+      .tech-project-card:hover .project-coming-soon,
+      .tech-project-card:focus-within .project-coming-soon {
+        opacity: 1;
+      }
+
+      .tech-project-card:hover .project-coming-soon div,
+      .tech-project-card:focus-within .project-coming-soon div {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 850px) {
+        .tech-project-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tech-project-card {
+          min-height: 240px;
+        }
+      }
+
+      @media (hover: none), (pointer: coarse) {
+        .project-coming-soon {
+          display: none;
+        }
+      }
+
+      /* ================================================================
+         PLACEHOLDER PROJECTS — BLURRED / LOADING
+         ================================================================ */
+
+      .placeholder-project {
+        min-height: 290px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--text);
+        background:
+          linear-gradient(
+            115deg,
+            rgba(255,255,255,0.025) 20%,
+            rgba(255,255,255,0.08) 35%,
+            rgba(255,255,255,0.025) 50%
+          ),
+          #151515;
+        background-size: 220% 100%;
+        border: 1px solid #2e2e2e;
+        border-radius: 18px;
+        cursor: pointer;
+        animation: placeholderSweep 2.5s linear infinite;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .placeholder-project:hover {
+        transform: translateY(-2px);
+        border-color: #555;
+      }
+
+      .placeholder-project:focus-visible {
+        outline: 2px solid rgba(255,255,255,0.9);
+        outline-offset: 3px;
+      }
+
+      @keyframes placeholderSweep {
+        from {
+          background-position: 120% 0;
+        }
+        to {
+          background-position: -120% 0;
+        }
+      }
+
+      .placeholder-lines {
+        display: grid;
+        gap: 12px;
+        filter: blur(5px);
+        opacity: 0.52;
+      }
+
+      .placeholder-line {
+        height: 11px;
+        background: rgba(255,255,255,0.17);
+        border-radius: 999px;
+      }
+
+      .placeholder-line.short {
+        width: 38%;
+      }
+
+      .placeholder-line.medium {
+        width: 68%;
+      }
+
+      .placeholder-line.long {
+        width: 92%;
+      }
+
+      .placeholder-title-block {
+        height: 38px;
+        width: 62%;
+        margin: 24px 0 18px;
+        background: rgba(255,255,255,0.21);
+        border-radius: 8px;
+        filter: blur(6px);
+        opacity: 0.58;
+      }
+
+      .placeholder-bottom {
+        display: flex;
+        gap: 8px;
+        filter: blur(4px);
+        opacity: 0.5;
+      }
+
+      .placeholder-pill {
+        width: 54px;
+        height: 22px;
+        background: rgba(255,255,255,0.14);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 999px;
+      }
+
+      /* ================================================================
+         LOCKED PLACEHOLDER MESSAGE — INSIDE CLICKED TILE ONLY
+         ================================================================ */
+
+      .placeholder-project {
+        position: relative;
+      }
+
+      .placeholder-local-message {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        color: #ffffff;
+        background: rgba(12, 12, 12, 0.82);
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease;
+      }
+
+      .placeholder-project.show-locked .placeholder-local-message {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .placeholder-local-message-inner {
+        width: min(100%, 230px);
+        display: grid;
+        justify-items: center;
+        gap: 9px;
+        text-align: center;
+      }
+
+      .placeholder-local-message i {
+        font-size: 17px;
+      }
+
+      .placeholder-local-message strong {
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+      }
+
+      .placeholder-local-message p {
+        color: rgba(255, 255, 255, 0.62);
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 8px;
+        line-height: 1.6;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+
+      .placeholder-local-close {
+        margin-top: 5px;
+        padding: 8px 11px;
+        color: #ffffff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 8px;
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+      }
+
+      .placeholder-local-close:hover {
+        color: #111111;
+        background: #ffffff;
+        border-color: #ffffff;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <nav
+      class="bottom-panel"
+      id="bottomPanel"
+      aria-label="Portfolio navigation"
+    >
+      <a
+        href="/"
+        class="bottom-nav-item nav-link"
+        data-nav="about"
+        aria-label="About Me"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/circle.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">About Me</span>
+      </a>
+
+      <a
+        href="/work"
+        class="bottom-nav-item nav-link"
+        data-nav="work"
+        aria-label="Work"
+        aria-current="page"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/square.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Work</span>
+      </a>
+
+      <a
+        href="/skill"
+        class="bottom-nav-item nav-link"
+        data-nav="skill"
+        aria-label="Skill"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/triangle.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Skill</span>
+      </a>
+
+      <button
+        id="quoteBtn"
+        class="bottom-nav-item bottom-nav-action icon-btn dock-utility-start"
+        type="button"
+        aria-label="Show quote"
+        aria-expanded="false"
+        aria-controls="quoteBox"
+      >
+        <img
+          class="dock-png bottom-nav-image"
+          src="image/icon/ux.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Quote</span>
+      </button>
+
+      <a
+        href="file/rainniel-villela-graphics-resume.pdf"
+        id="resumeDownload"
+        class="bottom-nav-item"
+        aria-label="Download resume"
+        download
+      >
+        <img
+          class="dock-png"
+          src="image/icon/arrow.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Resume</span>
+      </a>
+
+      <button
+        id="themeBtn"
+        class="bottom-nav-item bottom-nav-action icon-btn"
+        type="button"
+        aria-label="Turn on dark mode"
+        aria-pressed="false"
+      >
+        <img
+          id="themeIcon"
+          class="dock-png dock-mode-image"
+          src="image/icon/hexagon.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label" id="themeLabel">Tech Mode</span>
+      </button>
+    </nav>
+
+    <div
+      id="quoteBox"
+      class="quote-box"
+      role="dialog"
+      aria-label="Quote of the day"
+      aria-live="polite"
+    >
+      <span>Quote of the Day</span>
+      <p id="quoteText">Finding today's quote...</p>
+    </div>
+
+    <main class="work-page">
+
+      <!-- ============================================================
+           CREATIVE MODE
+           ============================================================ -->
+
+      <section
+        class="more-work-section creative-only"
+        aria-labelledby="moreWorkTitle"
+      >
+        <header class="more-work-header">
+          <h1 id="moreWorkTitle" class="more-work-title">MORE WORK</h1>
+
+          <p class="more-work-subtitle">
+            A collection of graphic work, visual projects, and designs I created.
+
+            <span class="published-legend">
+              <i aria-hidden="true"></i>
+              Published online
+            </span>
+          </p>
+        </header>
+
+        <div
+          id="moreWorkGallery"
+          class="more-work-gallery"
+          aria-label="Creative work gallery"
+        ></div>
+
+        <noscript>
+          <p class="gallery-noscript">
+            Please enable JavaScript to view the complete gallery.
+          </p>
+        </noscript>
+      </section>
+
+      <!-- ============================================================
+           TECH MODE
+           ============================================================ -->
+
+      <section
+        class="tech-only tech-work-section"
+        aria-labelledby="techMoreWorkTitle"
+      >
+        <header class="more-work-header">
+          <h1 id="techMoreWorkTitle" class="more-work-title">MORE WORK</h1>
+
+          <p class="more-work-subtitle">
+            Front-end and IoT projects I built and explored.
+          </p>
+        </header>
+
+        <div class="tech-project-grid">
+
+          <!-- iCapsicum -->
+          <article
+            class="tech-project-card"
+            id="icapsicum"
+          >
+<div class="tech-project-content">
+              <span class="project-type">Capstone IoT</span>
+
+              <h2>iCapsicum</h2>
+
+              <p>
+                Android-based Kalahari bell pepper monitoring and drip
+                fertigation system for Quezon National Agricultural School.
+              </p>
+            </div>
+
+            <div class="project-tags" aria-label="Technologies used">
+              <span>ESP32</span>
+              <span>Firebase</span>
+              <span>Android</span>
+            </div>
+</article>
+
+          <!-- Vyrify -->
+          <article
+            class="tech-project-card project-link-ready"
+            id="vyrify"
+            data-project-url=""
+            role="link"
+            tabindex="0"
+            aria-label="Open Vyrify project"
+          >
+            <span class="vyrify-link-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </span>
+<div class="tech-project-content">
+              <span class="project-type">Front-End Tool</span>
+
+              <h2>Vyrify</h2>
+
+              <p>
+                A scam-checking website concept built with HTML, CSS, and
+                JavaScript for checking suspicious digital content.
+              </p>
+            </div>
+
+            <div class="project-tags" aria-label="Technologies used">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+</article>
+
+          <!-- Automatic Pet Feeder -->
+          <article
+            class="tech-project-card"
+            id="pet-feeder"
+          >
+<div class="tech-project-content">
+              <span class="project-type">Arduino Project</span>
+
+              <h2>Automatic Pet Feeder</h2>
+
+              <p>
+                An Arduino-based automatic pet feeder that uses a sensor and
+                time-based scheduling to dispense food automatically.
+              </p>
+            </div>
+
+            <div class="project-tags" aria-label="Technologies used">
+              <span>Arduino</span>
+              <span>Sensor</span>
+              <span>Scheduling</span>
+            </div>
+</article>
+
+          <!-- Locked placeholder project 01 -->
+          <button
+            class="placeholder-project"
+            type="button"
+            data-locked-project
+            aria-label="Upcoming project. Project locked."
+          >
+<div>
+              <div class="placeholder-lines">
+                <span class="placeholder-line short"></span>
+              </div>
+
+              <div class="placeholder-title-block"></div>
+
+              <div class="placeholder-lines">
+                <span class="placeholder-line long"></span>
+                <span class="placeholder-line medium"></span>
+                <span class="placeholder-line long"></span>
+              </div>
+            </div>
+
+            <div class="placeholder-bottom">
+              <span class="placeholder-pill"></span>
+              <span class="placeholder-pill"></span>
+              <span class="placeholder-pill"></span>
+            </div>
+          
+            <div class="placeholder-local-message" aria-hidden="true">
+              <div class="placeholder-local-message-inner">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                <strong>COMING SOON</strong>
+                <p>Project locked. This project is still being prepared.</p>
+                <span class="placeholder-local-close" role="button" tabindex="0">
+                  CLOSE
+                </span>
+              </div>
+            </div>
+</button>
+
+          <!-- Locked placeholder project 02 -->
+          <button
+            class="placeholder-project"
+            type="button"
+            data-locked-project
+            aria-label="Upcoming project. Project locked."
+          >
+<div>
+              <div class="placeholder-lines">
+                <span class="placeholder-line short"></span>
+              </div>
+
+              <div class="placeholder-title-block"></div>
+
+              <div class="placeholder-lines">
+                <span class="placeholder-line medium"></span>
+                <span class="placeholder-line long"></span>
+                <span class="placeholder-line medium"></span>
+              </div>
+            </div>
+
+            <div class="placeholder-bottom">
+              <span class="placeholder-pill"></span>
+              <span class="placeholder-pill"></span>
+            </div>
+          
+            <div class="placeholder-local-message" aria-hidden="true">
+              <div class="placeholder-local-message-inner">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                <strong>COMING SOON</strong>
+                <p>Project locked. This project is still being prepared.</p>
+                <span class="placeholder-local-close" role="button" tabindex="0">
+                  CLOSE
+                </span>
+              </div>
+            </div>
+</button>
+
+          <!-- Locked placeholder project 03 -->
+          <button
+            class="placeholder-project"
+            type="button"
+            data-locked-project
+            aria-label="Upcoming project. Project locked."
+          >
+<div>
+              <div class="placeholder-lines">
+                <span class="placeholder-line short"></span>
+              </div>
+
+              <div class="placeholder-title-block"></div>
+
+              <div class="placeholder-lines">
+                <span class="placeholder-line long"></span>
+                <span class="placeholder-line long"></span>
+                <span class="placeholder-line medium"></span>
+              </div>
+            </div>
+
+            <div class="placeholder-bottom">
+              <span class="placeholder-pill"></span>
+              <span class="placeholder-pill"></span>
+              <span class="placeholder-pill"></span>
+            </div>
+          
+            <div class="placeholder-local-message" aria-hidden="true">
+              <div class="placeholder-local-message-inner">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                <strong>COMING SOON</strong>
+                <p>Project locked. This project is still being prepared.</p>
+                <span class="placeholder-local-close" role="button" tabindex="0">
+                  CLOSE
+                </span>
+              </div>
+            </div>
+</button>
+
+        </div>
+      </section>
+    </main>
+
+
+    <script src="script.js?v=19"></script>
+    <script src="work-gallery.js?v=4"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const lockedProjects = document.querySelectorAll("[data-locked-project]");
+
+        function closeAllLockedTiles(except) {
+          lockedProjects.forEach(function (project) {
+            if (project !== except) {
+              project.classList.remove("show-locked");
+
+              const message = project.querySelector(".placeholder-local-message");
+              if (message) {
+                message.setAttribute("aria-hidden", "true");
+              }
+            }
+          });
+        }
+
+        lockedProjects.forEach(function (project) {
+          const message = project.querySelector(".placeholder-local-message");
+          const closeButton = project.querySelector(".placeholder-local-close");
+
+          project.addEventListener("click", function (event) {
+            if (event.target.closest(".placeholder-local-close")) return;
+
+            closeAllLockedTiles(project);
+            project.classList.add("show-locked");
+
+            if (message) {
+              message.setAttribute("aria-hidden", "false");
+            }
+          });
+
+          if (closeButton) {
+            closeButton.addEventListener("click", function (event) {
+              event.stopPropagation();
+              project.classList.remove("show-locked");
+
+              if (message) {
+                message.setAttribute("aria-hidden", "true");
+              }
+            });
+
+            closeButton.addEventListener("keydown", function (event) {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                event.stopPropagation();
+                closeButton.click();
+              }
+            });
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeAllLockedTiles();
+          }
+        });
+      })();
+
+      /* ================================================================
+         FUTURE PROJECT LINKS
+         To activate Vyrify later, replace:
+         data-project-url=""
+         with:
+         data-project-url="https://your-vyrify-url.com"
+         ================================================================ */
+      (function () {
+        "use strict";
+
+        const futureLinks = document.querySelectorAll("[data-project-url]");
+
+        function openFutureProject(card) {
+          const url = (card.dataset.projectUrl || "").trim();
+
+          if (!url) return;
+
+          window.open(url, "_blank", "noopener,noreferrer");
+        }
+
+        futureLinks.forEach(function (card) {
+          card.addEventListener("click", function () {
+            openFutureProject(card);
+          });
+
+          card.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openFutureProject(card);
+            }
+          });
+        });
+      })();
+    </script>
+    <script>
+      /* ================================================================
+         DYNAMIC RESUME DOWNLOAD
+         Creative / Light Mode = Graphics Resume
+         Tech / Dark Mode       = Tech Resume
+         ================================================================ */
+      (function () {
+        "use strict";
+
+        const resumeLink = document.getElementById("resumeDownload");
+
+        if (!resumeLink) return;
+
+        function getResumeFile() {
+          return document.documentElement.classList.contains("dark")
+            ? "file/rainniel-villela-tech-resume.pdf"
+            : "file/rainniel-villela-graphics-resume.pdf";
+        }
+
+        function updateResumeLink() {
+          const resumeFile = getResumeFile();
+          resumeLink.href = resumeFile;
+          resumeLink.setAttribute("download", resumeFile.split("/").pop());
+        }
+
+        updateResumeLink();
+
+        resumeLink.addEventListener("click", function () {
+          updateResumeLink();
+        });
+
+        /*
+         * Watch for the existing theme button changing the <html> class.
+         * This keeps the Resume link correct immediately after switching
+         * between Creative/Light and Tech/Dark mode.
+         */
+        const observer = new MutationObserver(updateResumeLink);
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"]
+        });
+      })();
+    </script>
+  </body>
+</html>

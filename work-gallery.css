@@ -1,0 +1,465 @@
+/* =========================================================
+   MORE WORK GALLERY
+   Clean masonry layout with published-card flip animation
+   ========================================================= */
+
+.more-work-section {
+  width: 100%;
+}
+
+/* Smaller and cleaner gallery heading. */
+.more-work-header {
+  max-width: 560px;
+  margin-bottom: 30px;
+}
+
+.work-page .more-work-title {
+  margin: 0 0 10px;
+  color:#383838;
+  font-size: clamp(36px, 5.5vw, 40px);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.more-work-subtitle {
+  max-width: 500px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.published-legend {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.published-legend i {
+  width: 7px;
+  height: 7px;
+  display: block;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #087cff;
+}
+
+/* =========================================================
+   ROW-ORDERED MASONRY
+   ========================================================= */
+
+.more-work-gallery {
+  --gallery-gap: 12px;
+  --gallery-card-bg: #ffffff;
+  --gallery-card-text: #151515;
+  --gallery-border: rgba(17, 24, 39, 0.15);
+  --gallery-action-bg: #ffffff;
+
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gallery-gap);
+  align-items: start;
+}
+
+html.dark .more-work-gallery {
+  --gallery-card-bg: #111111;
+  --gallery-card-text: #f5f5f5;
+  --gallery-border: rgba(255, 255, 255, 0.18);
+  --gallery-action-bg: #151515;
+}
+
+.more-work-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gallery-gap);
+}
+
+/* =========================================================
+   GALLERY ITEMS
+   ========================================================= */
+
+.more-work-item {
+  position: relative;
+  z-index: 0;
+
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow: visible;
+
+  color: inherit;
+  background: transparent;
+  border: 0;
+
+  transform: translateY(0) scale(1);
+
+  transition:
+    transform 0.24s cubic-bezier(0.2, 0.75, 0.25, 1),
+    filter 0.24s ease;
+
+  will-change: transform;
+}
+
+figure.more-work-item {
+  cursor: default;
+}
+
+/* Thin border for ordinary gallery images. */
+.more-work-item > img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-sizing: border-box;
+
+  object-fit: contain;
+  object-position: center;
+
+  background: var(--gallery-card-bg);
+  border: 1px solid var(--gallery-border);
+  border-radius: 4px;
+
+  filter: none;
+  user-select: none;
+  -webkit-user-drag: none;
+
+  transition:
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+/* =========================================================
+   FLIPPING PUBLISHED CARD
+   ========================================================= */
+
+.more-work-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--item-ratio, 1 / 1);
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: var(--gallery-card-bg);
+  border: 1px solid var(--gallery-border);
+  border-radius: 4px;
+
+  perspective: 1100px;
+
+  transition:
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.more-work-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+
+  transition: transform 0.55s cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+
+.more-work-item.is-revealed .more-work-card-inner {
+  transform: rotateY(180deg);
+}
+
+.more-work-face {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+  border: 0;
+  border-radius: inherit;
+
+  color: var(--gallery-card-text);
+  background: var(--gallery-card-bg);
+
+  font: inherit;
+  text-align: left;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Front artwork. */
+.more-work-front {
+  display: block;
+  cursor: pointer;
+}
+
+.more-work-front img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: contain;
+  object-position: center;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Only visual marker shown on the image. */
+.published-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+
+  width: 8px;
+  height: 8px;
+
+  display: block;
+  border-radius: 50%;
+  background: #087cff;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.92),
+    0 2px 6px rgba(0, 0, 0, 0.24);
+
+  pointer-events: none;
+}
+
+/* Back of published card. */
+.more-work-back {
+  padding: clamp(9px, 7%, 20px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+
+  color: var(--gallery-card-text);
+  background: var(--gallery-card-bg);
+
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.published-back-label {
+  color: #087cff;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(8px, 1vw, 10px);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.published-back-account {
+  width: 100%;
+  margin-top: 5px;
+
+  overflow: hidden;
+  color: var(--gallery-card-text);
+  font-size: clamp(11px, 1.4vw, 15px);
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Blue border after the card has been opened. */
+.more-work-item.is-revealed .more-work-card {
+  border-color: rgba(8, 124, 255, 0.75);
+}
+
+/* =========================================================
+   VIEW ORIGINAL PANEL
+   ========================================================= */
+
+.published-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  opacity: 0;
+  transform: translateY(-5px);
+
+  transition:
+    grid-template-rows 0.3s ease,
+    opacity 0.22s ease,
+    transform 0.3s ease;
+}
+
+.more-work-item.is-revealed .published-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.published-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.published-action {
+  min-height: 42px;
+  margin-top: 8px;
+  padding: 0 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  box-sizing: border-box;
+
+  color: var(--gallery-card-text);
+  background: var(--gallery-action-bg);
+  border: 1px solid var(--gallery-border);
+  border-radius: 4px;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.published-action-arrow {
+  color: #087cff;
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* =========================================================
+   HOVER AND KEYBOARD STATES
+   ========================================================= */
+
+.more-work-front:focus-visible,
+.more-work-back:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px #087cff;
+}
+
+.published-action:focus-visible {
+  outline: 2px solid #087cff;
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .more-work-item:hover {
+    z-index: 5;
+    transform: translateY(-5px) scale(1.018);
+  }
+
+  .more-work-item:hover > img,
+  .more-work-item:hover .more-work-card {
+    box-shadow:
+      0 8px 18px rgba(0, 0, 0, 0.08),
+      0 18px 34px rgba(0, 0, 0, 0.12);
+  }
+
+  .more-work-item.is-published:hover .more-work-card {
+    border-color: rgba(8, 124, 255, 0.7);
+  }
+
+  .published-action:hover {
+    color: #ffffff;
+    background: #087cff;
+    border-color: #087cff;
+  }
+
+  .published-action:hover .published-action-arrow {
+    color: #ffffff;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE LAYOUT
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .more-work-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .more-work-header {
+    margin-bottom: 24px;
+  }
+
+  .work-page .more-work-title {
+    font-size: clamp(36px, 11vw, 50px);
+  }
+
+  .more-work-gallery {
+    --gallery-gap: 9px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .published-dot {
+    top: 8px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+  }
+
+  .published-action {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  .work-page .more-work-title {
+    font-size: 38px;
+  }
+
+  .more-work-subtitle {
+    font-size: 13px;
+  }
+
+  .published-back-label {
+    font-size: 7px;
+  }
+
+  .published-back-account {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .more-work-item,
+  .more-work-card,
+  .more-work-card-inner,
+  .published-panel,
+  .published-action {
+    transition: none;
+  }
+
+  .more-work-item:hover {
+    transform: none;
+  }
+}

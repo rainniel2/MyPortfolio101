@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Creative and technical skills used by Rainniel Villela."
+    />
+    <title>Skill | Rainniel Villela</title>
+
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (error) {
+        console.warn("Theme preference could not be loaded.");
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css?v=30" />
+    <link rel="stylesheet" href="skill-page.css?v=1" />
+  </head>
+
+  <body>
+    <nav
+      class="bottom-panel"
+      id="bottomPanel"
+      aria-label="Portfolio navigation"
+    >
+      <a
+        href="/"
+        class="bottom-nav-item nav-link"
+        data-nav="about"
+        aria-label="About Me"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/circle.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">About Me</span>
+      </a>
+
+      <a
+        href="/work"
+        class="bottom-nav-item nav-link"
+        data-nav="work"
+        aria-label="Work"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/square.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Work</span>
+      </a>
+
+      <a
+        href="/skill"
+        class="bottom-nav-item nav-link"
+        data-nav="skill"
+        aria-label="Skill"
+        aria-current="page"
+      >
+        <img
+          class="dock-png"
+          src="image/icon/triangle.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Skill</span>
+      </a>
+
+      <button
+        id="quoteBtn"
+        class="bottom-nav-item bottom-nav-action icon-btn dock-utility-start"
+        type="button"
+        aria-label="Show quote"
+        aria-expanded="false"
+        aria-controls="quoteBox"
+      >
+        <img
+          class="dock-png bottom-nav-image"
+          src="image/icon/ux.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Quote</span>
+      </button>
+
+      <a
+        href="file/rainniel-villela-graphics-resume.pdf"
+        id="resumeDownload"
+        class="bottom-nav-item"
+        aria-label="Download resume"
+        download
+      >
+        <img
+          class="dock-png"
+          src="image/icon/arrow.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label">Resume</span>
+      </a>
+
+      <button
+        id="themeBtn"
+        class="bottom-nav-item bottom-nav-action icon-btn"
+        type="button"
+        aria-label="Turn on dark mode"
+        aria-pressed="false"
+      >
+        <img
+          id="themeIcon"
+          class="dock-png dock-mode-image"
+          src="image/icon/hexagon.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="bottom-nav-label" id="themeLabel">Tech Mode</span>
+      </button>
+    </nav>
+
+    <div
+      id="quoteBox"
+      class="quote-box"
+      role="dialog"
+      aria-label="Quote of the day"
+      aria-live="polite"
+    >
+      <span>Quote of the Day</span>
+      <p id="quoteText">Finding today's quote...</p>
+    </div>
+
+    <main class="skill-page reference-skill-page">
+      <!-- CREATIVE MODE -->
+      <div class="skill-mode-panel creative-only">
+        <header class="more-work-header reference-skill-header">
+          <h1 class="more-work-title">MORE SKILLS</h1>
+          <p class="more-work-subtitle">
+            A collection of creative skills, tools, and platforms I use.
+          </p>
+        </header>
+
+        <section class="reference-skill-group" aria-labelledby="creativeSkillsTitle">
+          <h2 id="creativeSkillsTitle">Creative Skills</h2>
+
+          <div class="reference-skill-list">
+            <span>Graphic Design</span>
+            <span>UI &amp; Web Layout Design</span>
+            <span>Video Editing</span>
+            <span>Social Media Management</span>
+            <span>Poster Design</span>
+            <span>Photo Editing</span>
+          </div>
+        </section>
+
+        <section
+          class="reference-skill-group"
+          id="creative-tools"
+          aria-labelledby="creativeToolsTitle"
+        >
+          <h2 id="creativeToolsTitle">Creative Tools</h2>
+
+          <div class="reference-tool-grid">
+            <div>
+              <img
+                src="image/skill/TOOLS/photoshop.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Photoshop</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/canva.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Canva</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/figma.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Figma</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/krita.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Krita</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/lightroom.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Lightroom</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/affinity-designer.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Affinity Designer</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/after-effects.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>After Effects</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/TOOLS/capcut.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>CapCut</span>
+            </div>
+
+            <div>
+              <img src ="image/skill/TOOLS/magnific.png" alt="" aria-hidden="true"/>
+              <span>Magnific AI</span>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="reference-skill-group"
+          aria-labelledby="socialToolsTitle"
+        >
+          <h2 id="socialToolsTitle">Social Media Platforms</h2>
+
+          <div class="reference-tool-grid social-tool-grid">
+            <div>
+              <img
+                src="image/skill/SOCIAL MEDIA/facebook-app-symbol.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Facebook</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/SOCIAL MEDIA/instagram (1).png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>Instagram</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/SOCIAL MEDIA/tik-tok.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>TikTok</span>
+            </div>
+
+            <div>
+              <img
+                src="image/skill/SOCIAL MEDIA/youtube.png"
+                alt=""
+                aria-hidden="true"
+              />
+              <span>YouTube</span>
+            </div>
+
+            <div>
+              <img src="image/skill/SOCIAL MEDIA/pinterest-logo.png" alt="" aria-hidden="true"/>
+              <span>Pinterest</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TECH MODE -->
+      <div class="skill-mode-panel tech-only">
+        <header class="more-work-header reference-skill-header">
+          <h1 class="more-work-title">MORE SKILLS</h1>
+          <p class="more-work-subtitle">
+            A collection of programming, development, and tools I use.
+          </p>
+        </header>
+
+        <!--
+          TEMPORARY ICONS:
+          The icons below use Font Awesome for now.
+          You can replace each <i> later with your real PNG/SVG icon.
+        -->
+
+        <section class="reference-skill-group" aria-labelledby="programmingTitle">
+          <h2 id="programmingTitle">Programming / Web</h2>
+
+          <div class="reference-tool-grid tech-tool-grid">
+            <div>
+              <i class="fa-brands fa-html5 tech-temp-icon" aria-hidden="true"></i>
+              <span>HTML</span>
+            </div>
+
+            <div>
+              <i class="fa-brands fa-css3-alt tech-temp-icon" aria-hidden="true"></i>
+              <span>CSS</span>
+            </div>
+
+            <div>
+              <i class="fa-brands fa-js tech-temp-icon" aria-hidden="true"></i>
+              <span>JavaScript</span>
+            </div>
+
+            <div>
+              <i class="fa-brands fa-java tech-temp-icon" aria-hidden="true"></i>
+              <span>Java</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/c.png" alt="" aria-hidden="true"/>
+              <span>Arduino / C++</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="reference-skill-group" aria-labelledby="iotTitle">
+          <h2 id="iotTitle">IoT</h2>
+
+          <div class="reference-tool-grid tech-tool-grid">
+            <div>
+              <i class="fa-solid fa-microchip tech-temp-icon" aria-hidden="true"></i>
+              <span>ESP32</span>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-microchip tech-temp-icon" aria-hidden="true"></i>
+              <span>Arduino</span>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-gauge-high tech-temp-icon" aria-hidden="true"></i>
+              <span>Sensors</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/firebase.png" alt="" aria-hidden="true"/>
+              <span>Firebase</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="reference-skill-group" aria-labelledby="developmentToolsTitle">
+          <h2 id="developmentToolsTitle">Development Tools</h2>
+
+          <div class="reference-tool-grid tech-tool-grid">
+            <div>
+              <img src="image/skill/TOOLS/visual.png" alt="" aria-hidden="true"/>
+              <span>Visual Studio Code</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/android studio.png" alt="" aria-hidden="true"/>
+              <span>Android Studio</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/arduino.png" alt="" aria-hidden="true"/>
+              <span>Arduino IDE</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/eclipse.png" alt="" aria-hidden="true"/>
+              <span>Eclipse</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="reference-skill-group" aria-labelledby="aiToolsTitle">
+          <h2 id="aiToolsTitle">AI Tools</h2>
+
+          <div class="reference-tool-grid tech-tool-grid ai-tool-grid">
+            <div>
+              <img src="image/skill/TOOLS/openai.png" alt="" aria-hidden="true"/>
+              <span>OpenAI</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/gemini.png" alt="" aria-hidden="true"/>
+              <span>Gemini</span>
+            </div>
+
+            <div>
+              <img src="image/skill/TOOLS/copilot.png" alt="" aria-hidden="true"/>
+              <span>Copilot AI</span>
+            </div>
+
+            
+            
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js?v=19"></script>
+    <script>
+      /* ================================================================
+         DYNAMIC RESUME DOWNLOAD
+         Creative / Light Mode = Graphics Resume
+         Tech / Dark Mode       = Tech Resume
+         ================================================================ */
+      (function () {
+        "use strict";
+
+        const resumeLink = document.getElementById("resumeDownload");
+
+        if (!resumeLink) return;
+
+        function getResumeFile() {
+          return document.documentElement.classList.contains("dark")
+            ? "file/rainniel-villela-tech-resume.pdf"
+            : "file/rainniel-villela-graphics-resume.pdf";
+        }
+
+        function updateResumeLink() {
+          const resumeFile = getResumeFile();
+          resumeLink.href = resumeFile;
+          resumeLink.setAttribute("download", resumeFile.split("/").pop());
+        }
+
+        updateResumeLink();
+
+        resumeLink.addEventListener("click", function () {
+          updateResumeLink();
+        });
+
+        /*
+         * Watch for the existing theme button changing the <html> class.
+         * This keeps the Resume link correct immediately after switching
+         * between Creative/Light and Tech/Dark mode.
+         */
+        const observer = new MutationObserver(updateResumeLink);
+
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["class"]
+        });
+      })();
+    </script>
+  </body>
+</html>

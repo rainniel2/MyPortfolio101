@@ -1,0 +1,459 @@
+/* ================================================================
+   SKILL PAGE — MATCH WORK PAGE TYPOGRAPHY
+   Load this file AFTER style.css.
+   ================================================================ */
+
+
+.reference-skill-page {
+  width: var(--wide);
+  margin: 0 auto;
+  padding: 106px 0 150px;
+}
+
+
+.skill-mode-panel {
+  width: min(100%, 820px);
+  margin: 0 auto;
+}
+
+
+/* ---------------------------------------------------------------
+   Header
+   Matches the Work page title/subtitle hierarchy.
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .more-work-header {
+  max-width: 560px;
+  margin: 0 0 30px;
+}
+
+
+.reference-skill-page .more-work-title {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: clamp(36px, 5.5vw, 58px);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+
+.reference-skill-page .more-work-subtitle {
+  max-width: 500px;
+  margin: 0;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+}
+
+
+/* ---------------------------------------------------------------
+   Skill sections
+   --------------------------------------------------------------- */
+
+
+.reference-skill-group {
+  margin: 0;
+  padding: 34px 0;
+  border-top: 1px solid var(--border);
+}
+
+
+.reference-skill-group:last-child {
+  padding-bottom: 0;
+}
+
+
+.reference-skill-page .reference-skill-group h2 {
+  margin: 0 0 22px;
+  color: var(--soft);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1.45px;
+  text-transform: uppercase;
+}
+
+
+/* ---------------------------------------------------------------
+   Skills + tools grid
+   --------------------------------------------------------------- */
+
+
+.reference-skill-list,
+.reference-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 18px;
+}
+
+
+.reference-skill-page .reference-skill-list > span,
+.reference-skill-page .reference-tool-grid > div {
+  min-width: 0;
+  min-height: 26px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* ---------------------------------------------------------------
+   Creative skill bullets
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .reference-skill-list > span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border: 1.25px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.62;
+}
+
+
+/* ---------------------------------------------------------------
+   Creative tool icons
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .reference-tool-grid img {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  display: block;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+
+.reference-skill-page .reference-tool-grid span {
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.reference-skill-page .reference-skill-list > span:hover,
+.reference-skill-page .reference-tool-grid > div:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+
+.reference-skill-page .reference-tool-grid > div:hover img {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------------
+   TECH MODE — ICON + NAME
+   --------------------------------------------------------------- */
+
+
+/*
+  Programming / Web, IoT, Development Tools and AI Tools
+  use the same icon + name format as Creative Tools.
+
+  Your HTML can use either:
+
+  <i class="tech-temp-icon ..."></i>
+
+  OR later replace it with:
+
+  <img src="image/skill/TECH/html.png" alt="" aria-hidden="true">
+
+  This CSS supports both.
+*/
+
+
+.reference-skill-page .tech-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 18px;
+}
+
+
+.reference-skill-page .tech-tool-grid > div {
+  min-width: 0;
+  min-height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.reference-skill-page .tech-tool-grid > div:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------------
+   Temporary Tech Icons
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .tech-temp-icon {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  font-size: 17px;
+  line-height: 1;
+  opacity: 0.72;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.reference-skill-page .tech-tool-grid > div:hover .tech-temp-icon {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------------
+   Real Tech Icons
+   Replace temporary <i> icons with PNG/SVG later.
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .tech-tool-grid img {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  display: block;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+
+
+.reference-skill-page .tech-tool-grid > div:hover img {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+
+/* ---------------------------------------------------------------
+   Tech tool names
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .tech-tool-grid span {
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  font: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ---------------------------------------------------------------
+   AI Tools
+   --------------------------------------------------------------- */
+
+
+.reference-skill-page .ai-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 18px;
+}
+
+
+/* ---------------------------------------------------------------
+   Social platforms
+   --------------------------------------------------------------- */
+
+
+.social-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+
+/* ---------------------------------------------------------------
+   Tech Mode Typography
+   --------------------------------------------------------------- */
+
+
+/*
+  Keep the title exactly the same size as Work.
+  Do NOT make the Tech title smaller.
+*/
+
+
+html.dark .reference-skill-page .more-work-title {
+  color: #ffffff;
+  font-family: inherit;
+  font-size: clamp(36px, 5.5vw, 50px);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+
+/*
+  Tech Mode body text uses IBM Plex Mono,
+  matching the technical feeling of the Work page.
+*/
+
+
+html.dark .reference-skill-page .more-work-subtitle,
+html.dark .reference-skill-page .reference-skill-group h2,
+html.dark .reference-skill-page .reference-skill-list > span,
+html.dark .reference-skill-page .reference-tool-grid > div {
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+}
+
+
+/* Tech icons in dark mode. */
+
+
+html.dark .reference-skill-page .reference-tool-grid img,
+html.dark .reference-skill-page .tech-tool-grid img {
+  filter: grayscale(1) brightness(1.45);
+  opacity: 0.8;
+}
+
+
+html.dark .reference-skill-page .tech-temp-icon {
+  color: #bdbdbd;
+  opacity: 0.82;
+}
+
+
+html.dark .reference-skill-page .tech-tool-grid > div:hover .tech-temp-icon {
+  color: #ffffff;
+  opacity: 1;
+}
+
+
+/* ---------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------- */
+
+
+@media (max-width: 850px) {
+  .reference-skill-page {
+    padding-top: 82px;
+    padding-bottom: 130px;
+  }
+
+
+  .skill-mode-panel {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 620px) {
+  .reference-skill-page {
+    padding-top: 68px;
+    padding-bottom: 112px;
+  }
+
+
+  .reference-skill-page .more-work-header {
+    margin-bottom: 24px;
+  }
+
+
+  .reference-skill-page .more-work-title {
+    font-size: clamp(36px, 11vw, 50px);
+  }
+
+
+  .reference-skill-page .more-work-subtitle {
+    font-size: 13px;
+  }
+
+
+  .reference-skill-group {
+    padding: 28px 0;
+  }
+
+
+  .reference-skill-page .reference-skill-group h2 {
+    margin-bottom: 18px;
+  }
+
+
+  .reference-skill-list,
+  .reference-tool-grid,
+  .social-tool-grid,
+  .reference-skill-page .tech-tool-grid,
+  .reference-skill-page .ai-tool-grid {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+}
+
+
+@media (max-width: 430px) {
+  .reference-skill-page .more-work-title {
+    font-size: 38px;
+  }
+
+
+  .reference-skill-page .reference-skill-list > span,
+  .reference-skill-page .reference-tool-grid > div,
+  .reference-skill-page .tech-tool-grid > div {
+    font-size: 13.5px;
+  }
+}
