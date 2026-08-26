@@ -546,8 +546,6 @@ document.addEventListener("click", function (event) {
 
 const creativeRoles = [
   "BSIT Graduate",
-  "Front End Developer",
-  "IoT Developer",
   "Graphic Designer",
   "Social Media Manager",
 ];
