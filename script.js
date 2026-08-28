@@ -659,11 +659,10 @@ typeRole();
       ".work-page > .page-intro",
       ".work-page .project-card",
 
-      ".skill-page > h1",
-      ".skill-page > .page-intro",
-      ".skill-page .full-skill-group > h2",
-      ".skill-page .tool-grid > div",
-      ".skill-page .full-skill-list > span",
+      ".skill-page .reference-skill-header > *",
+      ".skill-page .reference-skill-group h2",
+      ".skill-page .reference-skill-list > span",
+      ".skill-page .reference-tool-grid > div",
     ].join(",");
 
     const items = [...new Set(document.querySelectorAll(selector))];
