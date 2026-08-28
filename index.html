@@ -100,6 +100,8 @@
       }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -320,6 +322,18 @@
       .footer-copy-feedback.is-visible {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
+      }
+
+      /* ================================================================
+         PREVENT LAYOUT SHIFT — tool/social icons are square logo assets,
+         so a 1:1 aspect-ratio reserves their space before they load.
+         (Work-gallery and profile photos aren't safely guessable this
+         way since their real proportions vary — see chat for details.)
+         ================================================================ */
+      .creative-tool-list img,
+      .home-tech-tool-list img {
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
       }
     </style>
   </head>
@@ -821,6 +835,7 @@
         <div class="work-five-grid creative-only">
           <div class="work-five featured-five">
             <img
+            loading="lazy"
               src="image/work/toyota/corolla.webp"
               alt="Toyota Corolla graphic design"
             />
@@ -828,6 +843,7 @@
 
           <div class="work-five">
             <img
+            loading="lazy"
               src="image/work/syntax/bsit-profile-frame.webp"
               alt="Syntax frame design"
             />
@@ -835,6 +851,7 @@
 
           <div class="work-five">
             <img
+            loading="lazy"
               src="image/work/syntax/elevate-team-frame-purple.webp"
               alt="Syntax team design"
             />
@@ -842,6 +859,7 @@
 
           <div class="work-five">
             <img
+            loading="lazy"
               src="image/work/toyota/tamaraw-search.webp"
               alt="Toyota Tamaraw graphic design"
             />
@@ -849,6 +867,7 @@
 
           <div class="work-five">
             <img
+            loading="lazy"
               src="image/work/toyota/labor-day.webp"
               alt="Toyota Labor Day poster design"
             />
@@ -937,32 +956,38 @@
 
             <div class="creative-tool-list">
               <div>
-                <img src="image/skill/TOOLS/photoshop.png" alt="Photoshop" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/photoshop.png" alt="Photoshop" />
                 <span>Photoshop</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/canva.png" alt="Canva" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/canva.png" alt="Canva" />
                 <span>Canva</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/figma.png" alt="Figma" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/figma.png" alt="Figma" />
                 <span>Figma</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/krita.png" alt="Krita" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/krita.png" alt="Krita" />
                 <span>Krita</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/lightroom.png" alt="Lightroom" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/lightroom.png" alt="Lightroom" />
                 <span>Lightroom</span>
               </div>
 
               <div>
                 <img
+            loading="lazy"
                   src="image/skill/TOOLS/affinity-designer.png"
                   alt="Affinity Designer"
                 />
@@ -992,22 +1017,26 @@
 
             <div class="home-tech-tool-list">
               <div>
-                <img src="image/skill/TOOLS/arduino.png" alt="" aria-hidden="true" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/arduino.png" alt="" aria-hidden="true" />
                 <span>Arduino IDE</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/visual.png" alt="" aria-hidden="true" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/visual.png" alt="" aria-hidden="true" />
                 <span>VSCode</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/firebase.png" alt="" aria-hidden="true" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/firebase.png" alt="" aria-hidden="true" />
                 <span>Firebase</span>
               </div>
 
               <div>
-                <img src="image/skill/TOOLS/gemini.png" alt="" aria-hidden="true" />
+                <img
+            loading="lazy" src="image/skill/TOOLS/gemini.png" alt="" aria-hidden="true" />
                 <span>Gemini</span>
               </div>
             </div>
