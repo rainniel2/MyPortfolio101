@@ -283,6 +283,44 @@
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
+
+      /* ================================================================
+         FOOTER — copyable phone number + its "Copied!" tooltip
+         ================================================================ */
+      .footer-contact .footer-copy-btn {
+        all: unset;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .footer-copy-feedback {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 8px);
+        transform: translateX(-50%) translateY(4px);
+        padding: 4px 9px;
+        color: #fff;
+        background: #1a1a1a;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.18s ease,
+          transform 0.18s ease;
+      }
+
+      .footer-copy-feedback.is-visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
     </style>
   </head>
   <body>
@@ -973,22 +1011,33 @@
       </section>
       
       <footer class="contact-footer" id="contact">
-      
 
         <div class="footer-contact">
-          <a href="mailto:rainnielvillela1@gmail.com">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=rainnielvillela1@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i class="fa-regular fa-envelope" aria-hidden="true"></i>
             <span>rainnielvillela1@gmail.com</span>
           </a>
-          <a href="tel:+639127589382">
+
+          <button
+            type="button"
+            class="footer-copy-btn"
+            id="footerPhoneCopy"
+            data-copy-value="+63 912 758 9382"
+            aria-label="Copy phone number"
+          >
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <span>+63&nbsp;912&nbsp;758&nbsp;9382</span>
-          </a>
+            <span class="footer-copy-feedback" aria-live="polite"></span>
+          </button>
 
-            <a href="https://www.google.com/maps/search/Quezon,+Philippines+4322">
-                <i class="fa-regular fa-map" aria-hidden="true"></i>
-                <span>Quezon, 4322 Philippines</span>
-         
+          <a href="https://www.google.com/maps/search/Quezon,+Philippines+4322">
+            <i class="fa-regular fa-map" aria-hidden="true"></i>
+            <span>Quezon, 4322 Philippines</span>
+          </a>
         </div>
 
       </footer>
@@ -997,7 +1046,7 @@
     </main>
 
     <script src="qrcode.js?v=1"></script>
-    <script src="script.js?v=19"></script>
+    <script src="script.js?v=20"></script>
     <script src="rynl-break.js?v=4"></script>
 
     <script>

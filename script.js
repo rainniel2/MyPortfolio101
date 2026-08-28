@@ -701,19 +701,38 @@ typeRole();
 
     /* ================================================================
    PORTFOLIO CONTENT PROTECTION
+   .footer-contact (email / phone / address) is exempt everywhere below,
+   so visitors can still select, right-click, and copy your contact info.
    ================================================================ */
 
 (function () {
   "use strict";
 
-  /* Disable right-click */
+  function isInsideFooterContact(node) {
+    if (!node) return false;
+    const el = node.nodeType === 1 ? node : node.parentElement;
+    return !!(el && el.closest && el.closest(".footer-contact"));
+  }
+
+  function selectionTouchesFooterContact() {
+    const selection = window.getSelection && window.getSelection();
+    if (!selection || selection.rangeCount === 0) return false;
+    return (
+      isInsideFooterContact(selection.anchorNode) ||
+      isInsideFooterContact(selection.focusNode)
+    );
+  }
+
+  /* Disable right-click (except inside the contact footer) */
   document.addEventListener("contextmenu", function (event) {
+    if (isInsideFooterContact(event.target)) return;
     event.preventDefault();
   });
 
 
-  /* Prevent text selection */
+  /* Prevent text selection (except inside the contact footer) */
   document.addEventListener("selectstart", function (event) {
+    if (isInsideFooterContact(event.target)) return;
     event.preventDefault();
   });
 
@@ -726,14 +745,26 @@ typeRole();
   });
 
 
-  /* Prevent copy */
+  /* Prevent copy (except inside the contact footer) */
   document.addEventListener("copy", function (event) {
+    if (
+      isInsideFooterContact(event.target) ||
+      selectionTouchesFooterContact()
+    ) {
+      return;
+    }
     event.preventDefault();
   });
 
 
-  /* Prevent cut */
+  /* Prevent cut (except inside the contact footer) */
   document.addEventListener("cut", function (event) {
+    if (
+      isInsideFooterContact(event.target) ||
+      selectionTouchesFooterContact()
+    ) {
+      return;
+    }
     event.preventDefault();
   });
 
@@ -741,14 +772,18 @@ typeRole();
   /* Prevent common save / copy / inspect shortcuts */
   document.addEventListener("keydown", function (event) {
     const key = event.key.toLowerCase();
+    const withinFooterContact =
+      isInsideFooterContact(event.target) ||
+      isInsideFooterContact(document.activeElement) ||
+      selectionTouchesFooterContact();
 
-    /* Ctrl/Cmd + C */
-    if ((event.ctrlKey || event.metaKey) && key === "c") {
+    /* Ctrl/Cmd + C (allowed inside the contact footer) */
+    if ((event.ctrlKey || event.metaKey) && key === "c" && !withinFooterContact) {
       event.preventDefault();
     }
 
-    /* Ctrl/Cmd + X */
-    if ((event.ctrlKey || event.metaKey) && key === "x") {
+    /* Ctrl/Cmd + X (allowed inside the contact footer) */
+    if ((event.ctrlKey || event.metaKey) && key === "x" && !withinFooterContact) {
       event.preventDefault();
     }
 
@@ -830,6 +865,7 @@ typeRole();
     startEntranceAnimation();
   }
 })();
+
 /* ================================================================
    TOP STATUS SCROLL HIDE / SHOW
    Time + availability + X hide together while scrolling down and
@@ -854,4 +890,56 @@ typeRole();
 
   window.addEventListener("scroll", handleTopStatusScroll, { passive: true });
   updateTopStatusVisibility();
+})();
+
+/* ================================================================
+   FOOTER PHONE NUMBER — CLICK TO COPY
+   Shows a small "Copied!" tooltip above the number for ~1.4s.
+   ================================================================ */
+(function () {
+  "use strict";
+
+  const copyBtn = document.getElementById("footerPhoneCopy");
+  if (!copyBtn) return;
+
+  const feedback = copyBtn.querySelector(".footer-copy-feedback");
+  let hideTimer = null;
+
+  function showFeedback(message) {
+    if (!feedback) return;
+
+    feedback.textContent = message;
+    feedback.classList.add("is-visible");
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () {
+      feedback.classList.remove("is-visible");
+    }, 1400);
+  }
+
+  async function copyPhoneNumber() {
+    const value = copyBtn.dataset.copyValue || "";
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const tempInput = document.createElement("textarea");
+        tempInput.value = value;
+        tempInput.style.position = "fixed";
+        tempInput.style.opacity = "0";
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
+
+      showFeedback("Copied!");
+    } catch (error) {
+      showFeedback("Couldn't copy");
+    }
+  }
+
+  copyBtn.addEventListener("click", copyPhoneNumber);
 })();
